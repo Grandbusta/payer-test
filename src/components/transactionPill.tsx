@@ -1,9 +1,15 @@
 import React from 'react';
+import {NavigationProp} from '@react-navigation/native';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-
-function TransactionPill(): JSX.Element {
+interface RouterProps {
+  navigation: NavigationProp<any, any>;
+}
+function TransactionPill({navigation}: RouterProps): JSX.Element {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('Request details');
+      }}>
       <View style={styles.sectionContainer}>
         <View style={styles.requestContainer}>
           <View style={styles.avatarNameView}>

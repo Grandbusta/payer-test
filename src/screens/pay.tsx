@@ -46,7 +46,7 @@ function Pay({navigation}: RouterProps): JSX.Element {
           </TouchableOpacity>
         </View>
       </View>
-      <ProcessingModal />
+      {showModal && <ProcessingModal />}
     </SafeAreaView>
   );
 }

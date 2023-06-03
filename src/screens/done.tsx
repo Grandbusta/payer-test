@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavigationProp} from '@react-navigation/native';
+import {NavigationProp, RouteProp} from '@react-navigation/native';
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,12 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import UserCard from '../components/usercard';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
+  route: RouteProp<{Done: {txnStatus: string}}, 'Done'>;
 }
 
-function RequestDetails({navigation}: RouterProps): JSX.Element {
+function Done({route, navigation}: RouterProps): JSX.Element {
+  const {txnStatus} = route.params;
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <View style={{marginHorizontal: 30, marginVertical: 20}}>
@@ -74,26 +77,29 @@ function RequestDetails({navigation}: RouterProps): JSX.Element {
             </View>
           </View>
         </View>
-        <View style={styles.btnLayout}>
-          <TouchableOpacity style={styles.btn}>
-            <Text style={styles.btnText}>Pay</Text>
-          </TouchableOpacity>
+        {txnStatus == 'declined' ? (
+          <View style={{alignItems: 'center', marginBottom: 20}}>
+            <Icon name="closecircleo" color={'red'} size={100} />
+            <View style={{alignItems: 'center'}}>
+              <Text style={{fontSize: 20}}>Transaction</Text>
+              <Text style={{fontSize: 20}}>Declined</Text>
+            </View>
+          </View>
+        ) : (
+          <View style={{alignItems: 'center', marginBottom: 20}}>
+            <Icon name="checkcircleo" color={'green'} size={100} />
+            <View style={{alignItems: 'center'}}>
+              <Text style={{fontSize: 20}}>Transaction</Text>
+              <Text style={{fontSize: 20}}>Completed</Text>
+            </View>
+          </View>
+        )}
+        <View>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => navigation.navigate('Decline_Request')}>
-            <Text style={styles.btnText}>Decline</Text>
+            onPress={() => navigation.navigate('Notifications')}>
+            <Text style={styles.btnText}>Done</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.actionLayout}>
-          <View style={styles.actionView}>
-            <Text style={styles.actionText}>Report Shola</Text>
-          </View>
-          <View style={styles.actionView}>
-            <Text style={styles.actionText}>Block Shola</Text>
-          </View>
-          <View style={styles.actionView}>
-            <Text style={styles.actionText}>Shot History</Text>
-          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -111,8 +117,9 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center',
     borderRadius: 10,
-    flexBasis: '46%',
+    width: '60%',
   },
   btnText: {color: 'white', fontWeight: 'bold', fontSize: 16},
   btnLayout: {
@@ -139,15 +146,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  actionView: {
-    marginVertical: 4,
-  },
-  actionText: {
-    fontSize: 16,
-  },
-  actionLayout: {
-    marginTop: 20,
-  },
 });
 
-export default RequestDetails;
+export default Done;

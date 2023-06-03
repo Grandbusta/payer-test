@@ -8,7 +8,7 @@ function TransactionPill({navigation}: RouterProps): JSX.Element {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate('Request details');
+        navigation.navigate('Request_details');
       }}>
       <View style={styles.sectionContainer}>
         <View style={styles.requestContainer}>

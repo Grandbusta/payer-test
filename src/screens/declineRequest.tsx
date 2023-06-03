@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import UserCard from '../components/usercard';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
@@ -23,19 +24,7 @@ function DeclineRequest({navigation}: RouterProps): JSX.Element {
             for money
           </Text>
         </View>
-        <View
-          style={{backgroundColor: '#FBFBFB', padding: 20, borderRadius: 8}}>
-          <View></View>
-          <View>
-            <Text style={{fontSize: 16, marginBottom: 6}}>Shola Ajayi</Text>
-            <Text style={{color: 'grey', fontSize: 12, marginBottom: 6}}>
-              +43212323456
-            </Text>
-            <Text style={{color: 'grey', fontSize: 12, marginBottom: 6}}>
-              peterfajemisin@gmail.com
-            </Text>
-          </View>
-        </View>
+        <UserCard />
         <View style={styles.amountRlayout}>
           <Text style={styles.amountR}>$70.00</Text>
           <Text>Request-Kindly send me some money</Text>
@@ -47,7 +36,11 @@ function DeclineRequest({navigation}: RouterProps): JSX.Element {
           <TextInput multiline={true} style={styles.textInput} />
         </View>
         <View>
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() =>
+              navigation.navigate('Done', {txnStatus: 'declined'})
+            }>
             <Text style={styles.btnText}>Decline</Text>
           </TouchableOpacity>
         </View>

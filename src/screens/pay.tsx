@@ -78,7 +78,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width: '100%',
   },
-  btnText: {color: 'white', fontWeight: 'bold', fontSize: 16},
+  btnText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
   notifLayout: {
     marginVertical: 60,
     marginHorizontal: 30,

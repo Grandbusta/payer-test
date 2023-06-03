@@ -7,12 +7,14 @@ import Notifications from './screens/notifications';
 import RequestDetails from './screens/requestDetails';
 import DeclineRequest from './screens/declineRequest';
 import Done from './screens/done';
+import Pay from './screens/pay';
 
 type RootStackParamList = {
   Done: {txnStatus: string};
   Notifications: undefined;
   Request_details: undefined;
   Decline_Request: undefined;
+  Pay: undefined;
 };
 
 const Tab = createBottomTabNavigator();
@@ -30,7 +32,7 @@ function MainNavigation() {
         <Stack.Screen
           name="Request_details"
           component={RequestDetails}
-          options={{title: 'Request_details'}}
+          options={{title: 'Request details'}}
         />
         <Stack.Screen
           name="Decline_Request"
@@ -38,6 +40,11 @@ function MainNavigation() {
           options={{title: 'Decline this request?'}}
         />
         <Stack.Screen name="Done" component={Done} />
+        <Stack.Screen
+          name="Pay"
+          component={Pay}
+          options={{title: 'Add Payment Method'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

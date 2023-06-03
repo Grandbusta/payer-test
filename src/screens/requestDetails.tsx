@@ -75,7 +75,9 @@ function RequestDetails({navigation}: RouterProps): JSX.Element {
           </View>
         </View>
         <View style={styles.btnLayout}>
-          <TouchableOpacity style={styles.btn}>
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => navigation.navigate('Pay')}>
             <Text style={styles.btnText}>Pay</Text>
           </TouchableOpacity>
           <TouchableOpacity

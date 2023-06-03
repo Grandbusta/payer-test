@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavigationProp} from '@react-navigation/native';
 import {
   SafeAreaView,
@@ -8,12 +8,14 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import ProcessingModal from '../components/processingModal';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
 function Pay({navigation}: RouterProps): JSX.Element {
+  const [showModal, setShowModal] = useState(false);
   return (
     <SafeAreaView style={styles.sectionContainer}>
       <View style={styles.layout}>
@@ -36,13 +38,15 @@ function Pay({navigation}: RouterProps): JSX.Element {
         <View style={{marginTop: 30}}>
           <TouchableOpacity
             style={styles.btn}
-            onPress={() =>
-              navigation.navigate('Done', {txnStatus: 'accepted'})
-            }>
+            onPress={() => {
+              setShowModal(true);
+              // navigation.navigate('Done', {txnStatus: 'accepted'})
+            }}>
             <Text style={styles.btnText}>Pay</Text>
           </TouchableOpacity>
         </View>
       </View>
+      <ProcessingModal />
     </SafeAreaView>
   );
 }

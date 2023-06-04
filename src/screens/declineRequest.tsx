@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import UserCard from '../components/usercard';
 
@@ -17,34 +18,36 @@ interface RouterProps {
 function DeclineRequest({navigation}: RouterProps): JSX.Element {
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <View style={{marginHorizontal: 30, marginVertical: 20}}>
-        <View style={styles.notifLayout}>
-          <Text style={styles.notifText}>
-            We'll email Shola Ajayi letting them know you decline their request
-            for money
-          </Text>
+      <ScrollView>
+        <View style={{marginHorizontal: 30, marginVertical: 20}}>
+          <View style={styles.notifLayout}>
+            <Text style={styles.notifText}>
+              We'll email Shola Ajayi letting them know you decline their
+              request for money
+            </Text>
+          </View>
+          <UserCard />
+          <View style={styles.amountRlayout}>
+            <Text style={styles.amountR}>$70.00</Text>
+            <Text>Request-Kindly send me some money</Text>
+          </View>
+          <View style={styles.textInputLayout}>
+            <Text style={{textAlign: 'center', fontSize: 13, marginBottom: 6}}>
+              Let shola know the reason you are declining(Optional)
+            </Text>
+            <TextInput multiline={true} style={styles.textInput} />
+          </View>
+          <View>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() =>
+                navigation.navigate('Done', {txnStatus: 'declined'})
+              }>
+              <Text style={styles.btnText}>Decline</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <UserCard />
-        <View style={styles.amountRlayout}>
-          <Text style={styles.amountR}>$70.00</Text>
-          <Text>Request-Kindly send me some money</Text>
-        </View>
-        <View style={styles.textInputLayout}>
-          <Text style={{textAlign: 'center', fontSize: 13, marginBottom: 6}}>
-            Let shola know the reason you are declining(Optional)
-          </Text>
-          <TextInput multiline={true} style={styles.textInput} />
-        </View>
-        <View>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() =>
-              navigation.navigate('Done', {txnStatus: 'declined'})
-            }>
-            <Text style={styles.btnText}>Decline</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

@@ -6,6 +6,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import UserCard from '../components/usercard';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,91 +19,93 @@ interface RouterProps {
 function RequestDetails({navigation}: RouterProps): JSX.Element {
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <View style={{marginHorizontal: 30, marginVertical: 20}}>
-        <UserCard />
-        <View style={styles.detailsLayout}>
-          <View style={styles.detailsRow}>
-            <View>
-              <Text style={styles.detailsTitle}>You pay</Text>
-              <Text style={styles.detailsValue}>GPB 70.00</Text>
+      <ScrollView>
+        <View style={{marginHorizontal: 30, marginVertical: 20}}>
+          <UserCard />
+          <View style={styles.detailsLayout}>
+            <View style={styles.detailsRow}>
+              <View>
+                <Text style={styles.detailsTitle}>You pay</Text>
+                <Text style={styles.detailsValue}>GPB 70.00</Text>
+              </View>
+              <View>
+                <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
+                  Receiver gets
+                </Text>
+                <Text style={styles.detailsValue}>NGN 40,204.98</Text>
+              </View>
             </View>
-            <View>
-              <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
-                Receiver gets
-              </Text>
-              <Text style={styles.detailsValue}>NGN 40,204.98</Text>
+            <View style={styles.detailsRow}>
+              <View>
+                <Text style={styles.detailsTitle}>Fee</Text>
+                <Text style={styles.detailsValue}>GPB 1.00</Text>
+              </View>
+              <View>
+                <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
+                  Fee included
+                </Text>
+                <Text style={{...styles.detailsValue, textAlign: 'right'}}>
+                  No
+                </Text>
+              </View>
+            </View>
+            <View style={styles.detailsRow}>
+              <View>
+                <Text style={styles.detailsTitle}>Total</Text>
+                <Text style={styles.detailsValue}>GPB 71.00</Text>
+              </View>
+              <View>
+                <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
+                  Account Number
+                </Text>
+                <Text style={{...styles.detailsValue, textAlign: 'right'}}>
+                  0131652470
+                </Text>
+              </View>
+            </View>
+            <View style={styles.detailsRow}>
+              <View>
+                <Text style={styles.detailsTitle}>Exchange rate</Text>
+                <Text style={styles.detailsValue}>GPB 1=NGN 574.37</Text>
+              </View>
+              <View>
+                <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
+                  Bank
+                </Text>
+                <Text style={{...styles.detailsValue, textAlign: 'right'}}>
+                  GTB
+                </Text>
+              </View>
             </View>
           </View>
-          <View style={styles.detailsRow}>
-            <View>
-              <Text style={styles.detailsTitle}>Fee</Text>
-              <Text style={styles.detailsValue}>GPB 1.00</Text>
-            </View>
-            <View>
-              <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
-                Fee included
-              </Text>
-              <Text style={{...styles.detailsValue, textAlign: 'right'}}>
-                No
-              </Text>
-            </View>
+          <View style={styles.btnLayout}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.navigate('Pay')}>
+              <Text style={styles.btnText}>Pay</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.navigate('Decline_Request')}>
+              <Text style={styles.btnText}>Decline</Text>
+            </TouchableOpacity>
           </View>
-          <View style={styles.detailsRow}>
-            <View>
-              <Text style={styles.detailsTitle}>Total</Text>
-              <Text style={styles.detailsValue}>GPB 71.00</Text>
+          <View style={styles.actionLayout}>
+            <View style={styles.actionView}>
+              <Icon name="user-circle-o" size={24} />
+              <Text style={styles.actionText}>Report Shola</Text>
             </View>
-            <View>
-              <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
-                Account Number
-              </Text>
-              <Text style={{...styles.detailsValue, textAlign: 'right'}}>
-                0131652470
-              </Text>
+            <View style={styles.actionView}>
+              <MaterialCommunityIcon name="cancel" size={24} />
+              <Text style={styles.actionText}>Block Shola</Text>
             </View>
-          </View>
-          <View style={styles.detailsRow}>
-            <View>
-              <Text style={styles.detailsTitle}>Exchange rate</Text>
-              <Text style={styles.detailsValue}>GPB 1=NGN 574.37</Text>
-            </View>
-            <View>
-              <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
-                Bank
-              </Text>
-              <Text style={{...styles.detailsValue, textAlign: 'right'}}>
-                GTB
-              </Text>
+            <View style={styles.actionView}>
+              <MaterialCommunityIcon name="clock-time-nine" size={24} />
+              <Text style={styles.actionText}>Show History</Text>
             </View>
           </View>
         </View>
-        <View style={styles.btnLayout}>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => navigation.navigate('Pay')}>
-            <Text style={styles.btnText}>Pay</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => navigation.navigate('Decline_Request')}>
-            <Text style={styles.btnText}>Decline</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.actionLayout}>
-          <View style={styles.actionView}>
-            <Icon name="user-circle-o" size={24} />
-            <Text style={styles.actionText}>Report Shola</Text>
-          </View>
-          <View style={styles.actionView}>
-            <MaterialCommunityIcon name="cancel" size={24} />
-            <Text style={styles.actionText}>Block Shola</Text>
-          </View>
-          <View style={styles.actionView}>
-            <MaterialCommunityIcon name="clock-time-nine" size={24} />
-            <Text style={styles.actionText}>Show History</Text>
-          </View>
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

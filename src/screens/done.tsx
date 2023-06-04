@@ -6,6 +6,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import UserCard from '../components/usercard';
 import Icon from 'react-native-vector-icons/AntDesign';
@@ -19,89 +20,91 @@ function Done({route, navigation}: RouterProps): JSX.Element {
   const {txnStatus} = route.params;
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <View style={{marginHorizontal: 30, marginVertical: 20}}>
-        <UserCard />
-        <View style={styles.detailsLayout}>
-          <View style={styles.detailsRow}>
-            <View>
-              <Text style={styles.detailsTitle}>You pay</Text>
-              <Text style={styles.detailsValue}>GPB 70.00</Text>
+      <ScrollView>
+        <View style={{marginHorizontal: 30, marginVertical: 20}}>
+          <UserCard />
+          <View style={styles.detailsLayout}>
+            <View style={styles.detailsRow}>
+              <View>
+                <Text style={styles.detailsTitle}>You pay</Text>
+                <Text style={styles.detailsValue}>GPB 70.00</Text>
+              </View>
+              <View>
+                <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
+                  Receiver gets
+                </Text>
+                <Text style={styles.detailsValue}>NGN 40,204.98</Text>
+              </View>
             </View>
-            <View>
-              <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
-                Receiver gets
-              </Text>
-              <Text style={styles.detailsValue}>NGN 40,204.98</Text>
+            <View style={styles.detailsRow}>
+              <View>
+                <Text style={styles.detailsTitle}>Fee</Text>
+                <Text style={styles.detailsValue}>GPB 1.00</Text>
+              </View>
+              <View>
+                <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
+                  Fee included
+                </Text>
+                <Text style={{...styles.detailsValue, textAlign: 'right'}}>
+                  No
+                </Text>
+              </View>
+            </View>
+            <View style={styles.detailsRow}>
+              <View>
+                <Text style={styles.detailsTitle}>Total</Text>
+                <Text style={styles.detailsValue}>GPB 71.00</Text>
+              </View>
+              <View>
+                <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
+                  Account Number
+                </Text>
+                <Text style={{...styles.detailsValue, textAlign: 'right'}}>
+                  0131652470
+                </Text>
+              </View>
+            </View>
+            <View style={styles.detailsRow}>
+              <View>
+                <Text style={styles.detailsTitle}>Exchange rate</Text>
+                <Text style={styles.detailsValue}>GPB 1=NGN 574.37</Text>
+              </View>
+              <View>
+                <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
+                  Bank
+                </Text>
+                <Text style={{...styles.detailsValue, textAlign: 'right'}}>
+                  GTB
+                </Text>
+              </View>
             </View>
           </View>
-          <View style={styles.detailsRow}>
-            <View>
-              <Text style={styles.detailsTitle}>Fee</Text>
-              <Text style={styles.detailsValue}>GPB 1.00</Text>
+          {txnStatus == 'declined' ? (
+            <View style={{alignItems: 'center', marginBottom: 20}}>
+              <Icon name="closecircleo" color={'red'} size={100} />
+              <View style={{alignItems: 'center'}}>
+                <Text style={{fontSize: 20}}>Transaction</Text>
+                <Text style={{fontSize: 20}}>Declined</Text>
+              </View>
             </View>
-            <View>
-              <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
-                Fee included
-              </Text>
-              <Text style={{...styles.detailsValue, textAlign: 'right'}}>
-                No
-              </Text>
+          ) : (
+            <View style={{alignItems: 'center', marginBottom: 20}}>
+              <Icon name="checkcircleo" color={'green'} size={100} />
+              <View style={{alignItems: 'center'}}>
+                <Text style={{fontSize: 20}}>Transaction</Text>
+                <Text style={{fontSize: 20}}>Completed</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.detailsRow}>
-            <View>
-              <Text style={styles.detailsTitle}>Total</Text>
-              <Text style={styles.detailsValue}>GPB 71.00</Text>
-            </View>
-            <View>
-              <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
-                Account Number
-              </Text>
-              <Text style={{...styles.detailsValue, textAlign: 'right'}}>
-                0131652470
-              </Text>
-            </View>
-          </View>
-          <View style={styles.detailsRow}>
-            <View>
-              <Text style={styles.detailsTitle}>Exchange rate</Text>
-              <Text style={styles.detailsValue}>GPB 1=NGN 574.37</Text>
-            </View>
-            <View>
-              <Text style={{...styles.detailsTitle, textAlign: 'right'}}>
-                Bank
-              </Text>
-              <Text style={{...styles.detailsValue, textAlign: 'right'}}>
-                GTB
-              </Text>
-            </View>
+          )}
+          <View>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => navigation.navigate('Notifications')}>
+              <Text style={styles.btnText}>Done</Text>
+            </TouchableOpacity>
           </View>
         </View>
-        {txnStatus == 'declined' ? (
-          <View style={{alignItems: 'center', marginBottom: 20}}>
-            <Icon name="closecircleo" color={'red'} size={100} />
-            <View style={{alignItems: 'center'}}>
-              <Text style={{fontSize: 20}}>Transaction</Text>
-              <Text style={{fontSize: 20}}>Declined</Text>
-            </View>
-          </View>
-        ) : (
-          <View style={{alignItems: 'center', marginBottom: 20}}>
-            <Icon name="checkcircleo" color={'green'} size={100} />
-            <View style={{alignItems: 'center'}}>
-              <Text style={{fontSize: 20}}>Transaction</Text>
-              <Text style={{fontSize: 20}}>Completed</Text>
-            </View>
-          </View>
-        )}
-        <View>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => navigation.navigate('Notifications')}>
-            <Text style={styles.btnText}>Done</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

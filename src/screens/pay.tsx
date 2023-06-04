@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import ProcessingModal from '../components/processingModal';
 
@@ -18,36 +19,39 @@ function Pay({navigation}: RouterProps): JSX.Element {
   const [showModal, setShowModal] = useState(false);
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <View style={styles.layout}>
-        <Text>Add a Credit Card</Text>
-        <View style={{marginVertical: 20}}>
-          <TextInput placeholder="Card Number" style={styles.textInput} />
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <TextInput
-              placeholder="Expiry Date"
-              style={{...styles.textInput, flexBasis: '50%'}}
-            />
-            <TextInput
-              placeholder="CVV"
-              style={{...styles.textInput, flexBasis: '45%'}}
-            />
+      <ScrollView>
+        <View style={styles.layout}>
+          <Text>Add a Credit Card</Text>
+          <View style={{marginVertical: 20}}>
+            <TextInput placeholder="Card Number" style={styles.textInput} />
+            <View
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <TextInput
+                placeholder="Expiry Date"
+                style={{...styles.textInput, flexBasis: '50%'}}
+              />
+              <TextInput
+                placeholder="CVV"
+                style={{...styles.textInput, flexBasis: '45%'}}
+              />
+            </View>
+            <TextInput placeholder="CardHolder Name" style={styles.textInput} />
+            <TextInput placeholder="Billing Address" style={styles.textInput} />
           </View>
-          <TextInput placeholder="CardHolder Name" style={styles.textInput} />
-          <TextInput placeholder="Billing Address" style={styles.textInput} />
+          <View style={{marginTop: 30}}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                setShowModal(true);
+                setTimeout(() => {
+                  navigation.navigate('Done', {txnStatus: 'accepted'});
+                }, 1500);
+              }}>
+              <Text style={styles.btnText}>Pay</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{marginTop: 30}}>
-          <TouchableOpacity
-            style={styles.btn}
-            onPress={() => {
-              setShowModal(true);
-              setTimeout(() => {
-                navigation.navigate('Done', {txnStatus: 'accepted'});
-              }, 1500);
-            }}>
-            <Text style={styles.btnText}>Pay</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </ScrollView>
       {showModal && <ProcessingModal />}
     </SafeAreaView>
   );

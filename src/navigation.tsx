@@ -25,8 +25,9 @@ function MainNavigation() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerTransparent: true,
+          headerTransparent: false,
           headerBackTitleVisible: false,
+          headerTitleAlign: 'center',
         }}>
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen

@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import UserCard from '../components/usercard';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
@@ -88,13 +90,16 @@ function RequestDetails({navigation}: RouterProps): JSX.Element {
         </View>
         <View style={styles.actionLayout}>
           <View style={styles.actionView}>
+            <Icon name="user-circle-o" size={24} />
             <Text style={styles.actionText}>Report Shola</Text>
           </View>
           <View style={styles.actionView}>
+            <MaterialCommunityIcon name="cancel" size={24} />
             <Text style={styles.actionText}>Block Shola</Text>
           </View>
           <View style={styles.actionView}>
-            <Text style={styles.actionText}>Shot History</Text>
+            <MaterialCommunityIcon name="clock-time-nine" size={24} />
+            <Text style={styles.actionText}>Show History</Text>
           </View>
         </View>
       </View>
@@ -143,6 +148,8 @@ const styles = StyleSheet.create({
   },
   actionView: {
     marginVertical: 4,
+    flexDirection: 'row',
+    gap: 8,
   },
   actionText: {
     fontSize: 16,

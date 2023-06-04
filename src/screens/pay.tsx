@@ -40,7 +40,9 @@ function Pay({navigation}: RouterProps): JSX.Element {
             style={styles.btn}
             onPress={() => {
               setShowModal(true);
-              // navigation.navigate('Done', {txnStatus: 'accepted'})
+              setTimeout(() => {
+                navigation.navigate('Done', {txnStatus: 'accepted'});
+              }, 1500);
             }}>
             <Text style={styles.btnText}>Pay</Text>
           </TouchableOpacity>
